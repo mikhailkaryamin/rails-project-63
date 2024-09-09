@@ -1,0 +1,15 @@
+# Code style checking for RSpec files
+# https://github.com/rubocop-hq/rubocop-rspec
+require: rubocop-rspec
+
+AllCops:
+  Include:
+    - lib/**/*.rb
+  Exclude:
+    - bin/**/*
+    - .git/**/*
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'

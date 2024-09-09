@@ -1,22 +1,31 @@
 # frozen_string_literal: true
 
-require_relative "hexlet_code/version"
+require_relative 'hexlet_code/version'
 
 module HexletCode
   class Error < StandardError; end
   # Your code goes here...
 
+  # Class for getting html tag
   class Tag
-    SINGLE_TAGS = ['br', 'img', 'input'].freeze
+    SINGLE_TAGS = %w"[br img input]".freeze
+
+    def builde_single_tag(tag, attributes_formatted)
+      "<#{tag} #{attributes_formatted}/>"
+    end
+
+    def build_double_tag(tag, attributes_formatted, content)
+      "<#{tag} #{attributes_formatted}>#{content || ''}</#{tag}>"
+    end
 
     def build(tag, *attributes)
-      attributes_formatted = attributes[0]&.map { |key, value| "#{key.to_s}=\"#{value}\"" }&.join(' ') || ''
-      content = (block_given? && yield) || ''
+      attributes_formatted = attributes[0]&.map { |key, value| "#{key}=\"#{value}\"" }&.join(' ') || ''
+      content = block_given? && yield
 
       if SINGLE_TAGS.include?(tag)
-        "<#{tag} #{attributes_formatted}/>"
+        builde_single_tag(tag, attributes_formatted)
       else
-        "<#{tag} #{attributes_formatted}>#{content}</#{tag}>"
+        build_double_tag(tag, attributes_formatted, content)
       end
     end
   end

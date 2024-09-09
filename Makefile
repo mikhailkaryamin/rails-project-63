@@ -1,2 +1,8 @@
 install:
-  bundle install
+	bundle install
+
+lint:
+	bundle exec rubocop
+  
+test:
+	bundle exec rspec --format doc
