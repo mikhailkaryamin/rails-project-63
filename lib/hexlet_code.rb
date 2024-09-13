@@ -2,6 +2,7 @@
 
 require_relative 'hexlet_code/version'
 
+# Module for generation form
 module HexletCode
   class Error < StandardError; end
   # Your code goes here...
@@ -28,5 +29,11 @@ module HexletCode
         build_double_tag(tag, attributes_formatted, content)
       end
     end
+  end
+
+  def self.form_for(_, options = {})
+    url = options[:url] || '#'
+
+    "<form action=\"#{url}\" method=\"post\"></form>"
   end
 end
