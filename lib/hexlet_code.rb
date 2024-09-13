@@ -33,7 +33,6 @@ module HexletCode
 
   def self.form_for(_, options = {})
     url = options[:url] || '#'
-
-    "<form action=\"#{url}\" method=\"post\"></form>"
+    HexletCode::Tag.new.build('form', action: url, method: 'post')
   end
 end
