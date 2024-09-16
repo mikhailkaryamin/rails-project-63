@@ -58,9 +58,8 @@ module HexletCode
           rows: 40,
           cols: 20,
           name: field_name,
-          type: 'text',
+          type: 'text'
         }
-
         tag.build('textarea', text_options.merge(rest))
       else
         default_input(field_name, *options)
@@ -82,11 +81,13 @@ module HexletCode
 
       is_custom_field = !options.empty? && options[0][:as]
 
-      if !is_custom_field
-        fields << default_input(field_name, *options)
-      else
-        fields << custom_field(field_name, *options)
-      end
+      field = if !is_custom_field
+                default_input(field_name, *options)
+              else
+                custom_field(field_name, *options)
+              end
+
+      fields << field
     end
 
     def html
