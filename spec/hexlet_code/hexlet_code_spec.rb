@@ -41,7 +41,7 @@ RSpec.describe HexletCode do
       f.input :job, as: :text, rows: 50, cols: 50
     end
 
-    expect(form).to eq fixture('form/textarea_additional_attrs.html').read
+    expect(form).to eq fixture('form/textarea.html').read
   end
 
   it 'Generate form with input and additional attrs' do
@@ -52,7 +52,7 @@ RSpec.describe HexletCode do
       f.input :job
     end
 
-    expect(form).to eq fixture('form/input_additional_attrs.html').read
+    expect(form).to eq fixture('form/input.html').read
   end
 
   it 'Generate full form with submit' do
@@ -65,6 +65,6 @@ RSpec.describe HexletCode do
       f.submit 'Wow'
     end
 
-    expect(form).to eq fixture('form/with_submit.html').read
+    expect(form).to eq fixture('form/submit.html').read
   end
 end

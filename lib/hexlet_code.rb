@@ -64,7 +64,8 @@ module HexletCode
           name: field_name,
           type: 'text'
         }
-        tag.build('textarea', text_options.merge(rest))
+        pp text_options.merge(rest)
+        tag.build('textarea', text_options.merge(rest)) { data[field_name] }
       else
         default_field(field_name, *options)
       end
