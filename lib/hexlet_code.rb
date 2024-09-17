@@ -49,6 +49,10 @@ module HexletCode
       data.public_send field_name
     end
 
+    def label(field_name)
+      tag.build('label', for: field_name) { field_name.capitalize }
+    end
+
     def custom_field(field_name, *options)
       field_data = options[0]
       field_data => {as:, **rest}
@@ -62,11 +66,11 @@ module HexletCode
         }
         tag.build('textarea', text_options.merge(rest))
       else
-        default_input(field_name, *options)
+        default_field(field_name, *options)
       end
     end
 
-    def default_input(field_name, *options)
+    def default_field(field_name, *options)
       input_options = {
         name: field_name,
         type: 'text',
@@ -82,12 +86,18 @@ module HexletCode
       is_custom_field = !options.empty? && options[0][:as]
 
       field = if !is_custom_field
-                default_input(field_name, *options)
+                default_field(field_name, *options)
               else
                 custom_field(field_name, *options)
               end
 
+      fields << label(field_name)
       fields << field
+    end
+
+    def submit(value = 'Save')
+      submit = tag.build('input', type: 'submit', value:)
+      fields << submit
     end
 
     def html

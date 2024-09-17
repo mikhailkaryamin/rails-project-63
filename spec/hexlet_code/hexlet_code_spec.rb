@@ -54,4 +54,17 @@ RSpec.describe HexletCode do
 
     expect(form).to eq fixture('form/input_additional_attrs.html').read
   end
+
+  it 'Generate full form with submit' do
+    stub_const('User', Struct.new(:name, :job, :gender, keyword_init: true))
+    custom_user = User.new job: 'hexlet'
+
+    form = described_class.form_for custom_user, url: '#' do |f|
+      f.input :name
+      f.input :job
+      f.submit 'Wow'
+    end
+
+    expect(form).to eq fixture('form/with_submit.html').read
+  end
 end
