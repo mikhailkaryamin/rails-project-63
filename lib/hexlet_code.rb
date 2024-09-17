@@ -8,21 +8,21 @@ module HexletCode
 
   # Class for getting html tag
   class Tag
-    SINGLE_TAGS = %w[br img input].freeze
+    DOUBLE_TAGS = %w[textarea].freeze
 
     def builde_single_tag(tag, attributes_formatted)
       "<#{tag} #{attributes_formatted || ' '}/>"
     end
 
     def build_double_tag(tag, attributes_formatted, content)
-      "<#{tag} #{attributes_formatted}>#{content}</#{tag}>"
+      "<#{tag} #{attributes_formatted}>#{content || ''}</#{tag}>"
     end
 
     def build_tag(tag, attributes_formatted, content)
-      if SINGLE_TAGS.include?(tag) || !content
-        builde_single_tag(tag, attributes_formatted)
-      else
+      if DOUBLE_TAGS.include?(tag) || content
         build_double_tag(tag, attributes_formatted, content)
+      else
+        builde_single_tag(tag, attributes_formatted)
       end
     end
 
