@@ -102,8 +102,13 @@ module HexletCode
     end
 
     def html
-      url = options[:url] || '#'
-      tag.build('form', action: url, method: 'post') { fields.join }
+      form_options = {
+        action: options[:url] || '#',
+        method: options[:method] || 'post'
+      }.merge(options)
+      form_options.delete(:url)
+
+      tag.build('form', form_options) { fields.join }
     end
   end
 
