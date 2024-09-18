@@ -86,10 +86,10 @@ module HexletCode
 
       is_custom_field = !options.empty? && options[0][:as]
 
-      field = if !is_custom_field
-                default_field(field_name, *options)
-              else
+      field = if is_custom_field
                 custom_field(field_name, *options)
+              else
+                default_field(field_name, *options)
               end
 
       fields << label(field_name)

@@ -1,21 +1,15 @@
-# Code style checking for RSpec files
-# https://github.com/rubocop-hq/rubocop-rspec
-require: rubocop-rspec
-
 AllCops:
-  Include:
-    - lib/**/*.rb
   Exclude:
-    - bin/**/*
-    - .git/**/*
-    - code/**/*
+    - "**/vendor/**/*"
+    - "**/*.gemspec"
+    - "spec/**"
+  NewCops: enable
   TargetRubyVersion: 3.2.2
-Metrics/BlockLength:
-  Exclude:
-    - 'Rakefile'
-    - '**/*.rake'
-    - 'spec/**/*.rb'
-RSpec/ExampleLength:
-  Max: 20
+  SuggestExtensions: false
+
+Style/Documentation:
+  Enabled: false
 Metrics/MethodLength:
-  Max: 20
+  Enabled: false
+Style/AsciiComments:
+  Enabled: false
