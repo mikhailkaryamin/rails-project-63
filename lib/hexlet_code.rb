@@ -6,33 +6,7 @@ require_relative 'hexlet_code/version'
 module HexletCode
   class Error < StandardError; end
 
-  # Class for getting html tag
-  class Tag
-    DOUBLE_TAGS = %w[textarea].freeze
-
-    def builde_single_tag(tag, attributes_formatted)
-      "<#{tag} #{attributes_formatted || ' '}/>"
-    end
-
-    def build_double_tag(tag, attributes_formatted, content)
-      "<#{tag} #{attributes_formatted}>#{content || ''}</#{tag}>"
-    end
-
-    def build_tag(tag, attributes_formatted, content)
-      if DOUBLE_TAGS.include?(tag) || content
-        build_double_tag(tag, attributes_formatted, content)
-      else
-        builde_single_tag(tag, attributes_formatted)
-      end
-    end
-
-    def build(tag, *attributes)
-      attributes_formatted = attributes[0]&.map { |key, value| "#{key}=\"#{value}\"" }&.join(' ') || ''
-      content = block_given? && yield
-
-      build_tag(tag, attributes_formatted, content)
-    end
-  end
+  autoload :Tag, 'tag.rb'
 
   # Class for getting form with fields
   class Form
@@ -41,7 +15,7 @@ module HexletCode
     def initialize(data, options)
       @data = data
       @options = options
-      @tag = HexletCode::Tag.new
+      @tag = Tag
       @fields = []
     end
 
