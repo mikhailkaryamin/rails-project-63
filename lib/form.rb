@@ -37,9 +37,9 @@ module HexletCode
     def input(field_name, *options)
       field?(field_name)
 
-      is_custom_field = !options.empty? && options[0][:as]
+      is_text_input = !options.empty? && options[0][:as]
 
-      field = if is_custom_field
+      field = if is_text_input
                 get_text_input_data(field_name, *options)
               else
                 get_string_input_data(field_name, *options)
