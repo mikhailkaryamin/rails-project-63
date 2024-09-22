@@ -39,23 +39,23 @@ module HexletCode
 
       is_text_input = !options.empty? && options[0][:as]
 
-      field = if is_text_input
-                get_text_input_data(field_name, *options)
+      input = if is_text_input
+                get_text_input(field_name, *options)
               else
-                get_string_input_data(field_name, *options)
+                get_string_input(field_name, *options)
               end
 
       fields << label(field_name)
-      fields << field
+      fields << input
     end
 
     private
 
-    def get_text_input_data(field_name, *options)
+    def get_text_input(field_name, *options)
       Inputs::TextInput.new(field_name, data[field_name], *options).data
     end
 
-    def get_string_input_data(field_name, *options)
+    def get_string_input(field_name, *options)
       Inputs::StringInput.new(field_name, data[field_name], *options).data
     end
   end
