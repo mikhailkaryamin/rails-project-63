@@ -18,11 +18,12 @@ module HexletCode
     end
 
     def label(field_name)
-      {
+      label = {
         tag_type: 'label',
         for: field_name,
         content: field_name.capitalize
       }
+      fields << label
     end
 
     def submit(value = 'Save')
@@ -45,7 +46,7 @@ module HexletCode
                 get_string_input(field_name, *options)
               end
 
-      fields << label(field_name)
+      label(field_name)
       fields << input
     end
 
