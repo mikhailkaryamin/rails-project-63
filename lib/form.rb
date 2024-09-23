@@ -44,16 +44,18 @@ module HexletCode
     private
 
     def get_text_input_data(field_name, *options)
+      text_input = Inputs::TextInput.new(field_name, data[field_name], *options)
       {
-        label: Inputs::TextInput.new(field_name, data[field_name], *options).label,
-        input: Inputs::TextInput.new(field_name, data[field_name], *options).input
+        label: text_input.label,
+        input: text_input.input
       }
     end
 
     def get_string_input_data(field_name, *options)
+      string_input = Inputs::StringInput.new(field_name, data[field_name], *options)
       {
-        label: Inputs::StringInput.new(field_name, data[field_name], *options).label,
-        input: Inputs::StringInput.new(field_name, data[field_name], *options).input
+        label: string_input.label,
+        input: string_input.input
       }
     end
   end
