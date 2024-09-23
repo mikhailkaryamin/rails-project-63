@@ -6,12 +6,12 @@ module HexletCode
   module Inputs
     class TextInput < BaseInput
       def initialize(field_name, value, *options)
-        super()
+        super(field_name)
 
         field_data = options[0]
         field_data.delete :as
 
-        @data = {
+        @input = {
           name: field_name,
           type: 'text',
           tag_type: 'textarea',

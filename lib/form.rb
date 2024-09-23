@@ -17,15 +17,6 @@ module HexletCode
       data.public_send field_name
     end
 
-    def label(field_name)
-      label = {
-        tag_type: 'label',
-        for: field_name,
-        content: field_name.capitalize
-      }
-      fields << label
-    end
-
     def submit(value = 'Save')
       submit = {
         tag_type: 'input',
@@ -40,24 +31,30 @@ module HexletCode
 
       is_text_input = !options.empty? && options[0][:as]
 
-      input = if is_text_input
-                get_text_input(field_name, *options)
-              else
-                get_string_input(field_name, *options)
-              end
+      input_data = if is_text_input
+                     get_text_input_data(field_name, *options)
+                   else
+                     get_string_input_data(field_name, *options)
+                   end
 
-      label(field_name)
-      fields << input
+      fields << input_data[:label]
+      fields << input_data[:input]
     end
 
     private
 
-    def get_text_input(field_name, *options)
-      Inputs::TextInput.new(field_name, data[field_name], *options).data
+    def get_text_input_data(field_name, *options)
+      {
+        label: Inputs::TextInput.new(field_name, data[field_name], *options).label,
+        input: Inputs::TextInput.new(field_name, data[field_name], *options).input
+      }
     end
 
-    def get_string_input(field_name, *options)
-      Inputs::StringInput.new(field_name, data[field_name], *options).data
+    def get_string_input_data(field_name, *options)
+      {
+        label: Inputs::StringInput.new(field_name, data[field_name], *options).label,
+        input: Inputs::StringInput.new(field_name, data[field_name], *options).input
+      }
     end
   end
 end

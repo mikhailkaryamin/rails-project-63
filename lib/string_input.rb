@@ -6,9 +6,9 @@ module HexletCode
   module Inputs
     class StringInput < BaseInput
       def initialize(field_name, value, *options)
-        super()
+        super(field_name)
 
-        @data = {
+        @input = {
           name: field_name,
           type: 'text',
           tag_type: 'input',
