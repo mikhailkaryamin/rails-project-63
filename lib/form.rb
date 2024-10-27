@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'text_input'
-require_relative 'string_input'
-
 module HexletCode
   class Form
     attr_reader :data

@@ -8,6 +8,8 @@ require_relative 'form_renderer'
 module HexletCode
   class Error < StandardError; end
 
+  autoload(:Inputs, 'hexlet_code/inputs')
+
   def self.form_for(data, options = {})
     form = Form.new data
 
